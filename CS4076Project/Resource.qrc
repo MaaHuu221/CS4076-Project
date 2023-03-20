@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/rec">
+    <qresource prefix="/imgs">
         <file>Images/Icons/Copy.bmp</file>
         <file>Images/Icons/Cut.bmp</file>
         <file>Images/Icons/DeleteSticky.bmp</file>

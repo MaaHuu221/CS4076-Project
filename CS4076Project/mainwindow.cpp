@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setCentralWidget(ui->textEdit);
+   //this->setCentralWidget(ui->textEdit);
 }
 
 MainWindow::~MainWindow()
@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionQuit_triggered()
 {
-    close();
+    QApplication::quit();
 }
 
 
@@ -52,8 +52,9 @@ void MainWindow::on_actionSave_As_triggered()
 {
     QString fileName = QFileDialog::getSaveFileName(this, "Save as");
     QFile file(fileName);
-    if(!file.open(QFile::ReadOnly | QFile::Text)){
+    if(!file.open(QFile::WriteOnly | QFile::Text)){
         QMessageBox::warning(this, "Warning", "Cannot open file : " + file.errorString());
+        return;
     }
     currentFile = fileName;
     setWindowTitle(fileName);
@@ -64,5 +65,33 @@ void MainWindow::on_actionSave_As_triggered()
 }
 
 
+void MainWindow::on_actionCopy_triggered()
+{
+    ui->textEdit->copy();
+}
 
+
+
+void MainWindow::on_actionPaste_triggered()
+{
+    ui->textEdit->paste();
+}
+
+
+void MainWindow::on_actionCut_triggered()
+{
+    ui->textEdit->cut();
+}
+
+
+void MainWindow::on_actionUndo_triggered()
+{
+    ui->textEdit->undo();
+}
+
+
+void MainWindow::on_actionRedo_triggered()
+{
+    ui->textEdit->redo();
+}
 

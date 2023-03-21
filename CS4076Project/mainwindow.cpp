@@ -33,8 +33,7 @@ void MainWindow::on_actionNew_triggered()
 
 void MainWindow::on_actionOpen_triggered()
 {
-
-    QString fileName = QFileDialog::getOpenFileName((this, "Open the file"));
+    QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
     QFile file(fileName);
     currentFile = fileName;
     if(!file.open(QIODevice::ReadOnly | QFile::Text)){

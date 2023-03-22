@@ -1,14 +1,42 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QMessageBox>
+#include "Recipes.h"
+#include <vector>
+#include <stdlib.h>
+
+using namespace std;
+
+int calories = 0;
+bool vegan = false;
+vector <Recipe> r;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->partTwo->hide();
+    Recipe lasagne("Lasagne", 135, false);
+    r.push_back(lasagne);
+    Recipe steak("Steak & Chips", 534, false);
+    r.push_back(steak);
+    Recipe burger("Beef Burger", 225, false);
+    r.push_back(burger);
+    Recipe vBurger("Vegan Burger",177, true);
+    r.push_back(vBurger);
+    Recipe curry("Chicken Curry", 110, false);
+    r.push_back(curry);
+    Recipe vCurry("Vegetable Curry", 188, true);
+    r.push_back(vCurry);
+    ui->vegFalse->clicked();
+    ui->stepButt->hide();
    //this->setCentralWidget(ui->textEdit);
 }
+
+
+
 
 MainWindow::~MainWindow()
 {
@@ -16,82 +44,46 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_actionQuit_triggered()
+void MainWindow::on_vegTrue_clicked()
 {
-    QApplication::quit();
+    vegan = true;
 }
 
 
-void MainWindow::on_actionNew_triggered()
+void MainWindow::on_vegFalse_clicked()
 {
-    currentFile.clear();
-    ui->textEdit->setText(QString());
+    vegan = false;
 }
 
 
-
-
-void MainWindow::on_actionOpen_triggered()
+void MainWindow::on_calSlider_sliderReleased()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
-    QFile file(fileName);
-    currentFile = fileName;
-    if(!file.open(QIODevice::ReadOnly | QFile::Text)){
-        QMessageBox::warning(this, "Warning", "Cannot open file : " + file.errorString());
+    calories = ui->calSlider->value();
+    const QString s = QString::number(calories);
+    ui->calLabel->setText("Max Calories " + s);
+}
+
+
+void MainWindow::on_recipeButt_clicked()
+{
+    ui->partTwo->show();
+    for(int i = 0; i < r.size(); i++){
+        if(r[i].getVegan() == vegan && r[i].getCalories() <= calories)
+        //if(1 == 1)
+        {
+            const QString s = QString::fromStdString(r[i].getName());
+            ui->recipeBox->addItem(s);
+        }
     }
-    setWindowTitle(fileName);
-    QTextStream in(&file);
-    QString text = in.readAll();
-    ui->textEdit->setText(text);
-    file.close();
 }
 
 
 
-void MainWindow::on_actionSave_As_triggered()
+
+void MainWindow::on_TaCBox_stateChanged(int arg1)
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Save as");
-    QFile file(fileName);
-    if(!file.open(QFile::WriteOnly | QFile::Text)){
-        QMessageBox::warning(this, "Warning", "Cannot open file : " + file.errorString());
-        return;
+    if(ui->TaCBox->isChecked()){
+        ui->stepButt->show();
     }
-    currentFile = fileName;
-    setWindowTitle(fileName);
-    QTextStream out(&file);
-    QString text = ui->textEdit->toPlainText();
-    out << text;
-    file.close();
-}
-
-
-void MainWindow::on_actionCopy_triggered()
-{
-    ui->textEdit->copy();
-}
-
-
-
-void MainWindow::on_actionPaste_triggered()
-{
-    ui->textEdit->paste();
-}
-
-
-void MainWindow::on_actionCut_triggered()
-{
-    ui->textEdit->cut();
-}
-
-
-void MainWindow::on_actionUndo_triggered()
-{
-    ui->textEdit->undo();
-}
-
-
-void MainWindow::on_actionRedo_triggered()
-{
-    ui->textEdit->redo();
 }
 

@@ -9,6 +9,7 @@
 #include <QMessageBox>
 
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,23 +23,16 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionQuit_triggered();
 
-    void on_actionNew_triggered();
+    void on_vegTrue_clicked();
 
-    void on_actionOpen_triggered();
+    void on_vegFalse_clicked();
 
-    void on_actionSave_As_triggered();
+    void on_calSlider_sliderReleased();
 
-    void on_actionCopy_triggered();
+    void on_recipeButt_clicked();
 
-    void on_actionPaste_triggered();
-
-    void on_actionCut_triggered();
-
-    void on_actionUndo_triggered();
-
-    void on_actionRedo_triggered();
+    void on_TaCBox_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

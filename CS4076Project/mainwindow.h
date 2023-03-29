@@ -44,6 +44,10 @@ private slots:
 
     void on_nextButt_clicked();
 
+    void on_actionAbout_2_triggered();
+
+    void on_actionTerms_and_Conditions_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";

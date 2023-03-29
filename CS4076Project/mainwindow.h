@@ -34,6 +34,16 @@ private slots:
 
     void on_TaCBox_stateChanged(int arg1);
 
+    void on_calSlider_valueChanged(int value);
+
+    void on_actionQuit_2_triggered();
+
+    void on_stepButt_clicked();
+
+    void on_backButt_clicked();
+
+    void on_nextButt_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";

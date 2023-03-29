@@ -4,18 +4,29 @@
 #include <stdlib.h>
 
 using namespace std;
-class Recipe
+class BasicRecipe{
+protected :
+    union{
+        unsigned int vegan : 1;
+    }s;
+
+    virtual bool getVegan() = 0;
+};
+class Recipe : public BasicRecipe
 {
     string rName;
     int calories;
-    bool vegan;
     vector<string> steps;
 
 public:
-    Recipe(string rName, int calories, bool vegan){
+    Recipe(string rName, int calories, bool v){
         this->rName = rName;
         this->calories = calories;
-        this->vegan = vegan;
+        s.vegan = v;
+    }
+
+    ~Recipe(){
+
     }
 
     string getName(){
@@ -26,15 +37,23 @@ public:
         return calories;
     }
 
-    bool getVegan(){
-        return vegan;
+    virtual bool getVegan(){
+        return s.vegan;
     }
 
     void addStep(string s){
         steps.push_back(s);
     }
 
+    vector<string> getSteps(){
+        return steps;
+    }
+
+    friend void operator +(Recipe &r, string s);
 
 };
 
+void operator +(Recipe &r, string s){
+    r.addStep(s);
+}
 #endif // RECIPES_H

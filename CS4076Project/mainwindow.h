@@ -48,6 +48,10 @@ private slots:
 
     void on_actionTerms_and_Conditions_triggered();
 
+    void on_pushButton_clicked();
+
+    void on_resetRecipe_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString currentFile = "";

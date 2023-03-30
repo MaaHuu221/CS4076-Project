@@ -200,3 +200,10 @@ void MainWindow::on_actionTerms_and_Conditions_triggered()
     QMessageBox::information(this, "Terms and Conditions", "Do you agree to...\nUse these recipes for good and admit that\nfood poisoning may be because you did not\nread the instructions thoroughly?");
 }
 
+
+void MainWindow::on_resetRecipe_clicked()
+{
+    ui->partTwo->hide();
+    ui->recipeBox->clear();
+}
+

@@ -152,7 +152,7 @@
     <widget class="QPushButton" name="nextButt">
      <property name="geometry">
       <rect>
-       <x>660</x>
+       <x>760</x>
        <y>240</y>
        <width>101</width>
        <height>31</height>
@@ -186,19 +186,6 @@
      </property>
      <property name="text">
       <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="resetRecipe">
-     <property name="geometry">
-      <rect>
-       <x>820</x>
-       <y>240</y>
-       <width>101</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>New Recipe</string>
      </property>
     </widget>
    </widget>
@@ -244,7 +231,6 @@
      <string>Options</string>
     </property>
     <addaction name="actionQuit_2"/>
-    <addaction name="actionRestart"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -275,14 +261,6 @@
   <action name="actionTerms_and_Conditions">
    <property name="text">
     <string>Terms and Conditions</string>
-   </property>
-  </action>
-  <action name="actionRestart">
-   <property name="text">
-    <string>Restart</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>
